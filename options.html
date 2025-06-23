@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webhook Quick Trigger - Settings</title>
+  <link rel="stylesheet" href="styles/options.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <img src="icons/icon32.png" alt="Webhook Quick Trigger" class="logo-icon">
+        <h1>Webhook Quick Trigger Settings</h1>
+      </div>
+      <div class="header-actions">
+        <button id="importBtn" class="import-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7,10 12,15 17,10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Import
+        </button>
+        <button id="exportBtn" class="export-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17,8 12,3 7,8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+          Export
+        </button>
+      </div>
+    </header>
+
+    <div class="main-content">
+      <!-- Sidebar Navigation -->
+      <nav class="sidebar">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <button class="nav-btn active" data-section="webhooks">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                <circle cx="12" cy="12" r="2" fill="currentColor"></circle>
+              </svg>
+              Webhooks
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-btn" data-section="settings">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              General
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-btn" data-section="about">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9,9h0a3,3,0,0,1,6,0c0,2-3,3-3,3"></path>
+                <path d="M12,17h0"></path>
+              </svg>
+              About
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Content Area -->
+      <main class="content">
+        <!-- Webhooks Section -->
+        <section id="webhooks-section" class="section active">
+          <div class="section-header">
+            <h2>Webhook Management</h2>
+            <button id="addWebhookBtn" class="primary-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              Add Webhook
+            </button>
+          </div>
+
+          <div class="webhooks-list" id="webhooksList">
+            <!-- Webhooks will be populated here -->
+          </div>
+
+          <!-- Empty state -->
+          <div id="webhooksEmptyState" class="empty-state">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+            </svg>
+            <h3>No Webhooks Configured</h3>
+            <p>Add your first webhook to start triggering workflows instantly.</p>
+          </div>
+        </section>
+
+        <!-- General Settings Section -->
+        <section id="settings-section" class="section">
+          <div class="section-header">
+            <h2>General Settings</h2>
+          </div>
+
+          <div class="settings-grid">
+            <div class="setting-item">
+              <label for="defaultTimeout">Default Timeout (ms)</label>
+              <input type="number" id="defaultTimeout" min="1000" max="60000" step="1000" value="30000">
+              <small>Maximum time to wait for webhook responses</small>
+            </div>
+
+            <div class="setting-item">
+              <label for="showNotifications">Show Notifications</label>
+              <label class="toggle">
+                <input type="checkbox" id="showNotifications" checked>
+                <span class="slider"></span>
+              </label>
+              <small>Display browser notifications for webhook results</small>
+            </div>
+
+            <div class="setting-item">
+              <label for="theme">Theme</label>
+              <select id="theme">
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+                <option value="auto">Auto</option>
+              </select>
+              <small>Choose your preferred color scheme</small>
+            </div>
+          </div>
+
+          <div class="settings-grid">
+            <div class="setting-item security-section">
+              <h3>Security & Recovery</h3>
+              <p>If you're experiencing authentication decryption errors, you can reset the encryption keys. This will clear all saved authentication data.</p>
+              <button id="resetCryptoBtn" class="danger-btn">Reset Encryption Keys</button>
+              <small>⚠️ This will clear all saved authentication data and require reconfiguration</small>
+            </div>
+          </div>
+
+          <div class="section-actions">
+            <button id="saveSettingsBtn" class="primary-btn">Save Settings</button>
+            <button id="resetSettingsBtn" class="secondary-btn">Reset to Defaults</button>
+          </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about-section" class="section">
+          <div class="section-header">
+            <h2>About Webhook Quick Trigger</h2>
+          </div>
+
+          <div class="about-content">
+            <div class="version-info">
+              <h3>Version 1.0.0</h3>
+              <p>Instantly trigger webhook endpoints from your browser without context switching.</p>
+            </div>
+
+            <div class="features-list">
+              <h4>Features</h4>
+              <ul>
+                <li>🔌 Webhook Library Management</li>
+                <li>🔑 Secure Authentication Storage</li>
+                <li>📝 Dynamic JSON Payload Editor</li>
+                <li>📊 Response Preview & Analysis</li>
+                <li>🛠 Test Mode for Safe Validation</li>
+                <li>⚙️ Comprehensive Settings</li>
+              </ul>
+            </div>
+
+            <div class="support-info">
+              <h4>Support & Documentation</h4>
+              <p>For help, documentation, and feature requests, visit our GitHub repository.</p>
+              <button id="githubBtn" class="link-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+                View on GitHub
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Webhook Modal -->
+  <div id="webhookModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Add Webhook</h3>
+        <button id="closeModal" class="close-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <form id="webhookForm" class="modal-body">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="webhookName">Name *</label>
+            <input type="text" id="webhookName" required placeholder="My Webhook">
+          </div>
+
+          <div class="form-group">
+            <label for="webhookMethod">Method</label>
+            <select id="webhookMethod">
+              <option value="POST">POST</option>
+              <option value="GET">GET</option>
+              <option value="PUT">PUT</option>
+              <option value="DELETE">DELETE</option>
+            </select>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="webhookUrl">URL *</label>
+            <input type="url" id="webhookUrl" required placeholder="https://your-instance.com/webhook/...">
+          </div>
+
+          <div class="form-group full-width">
+            <label for="webhookDescription">Description</label>
+            <textarea id="webhookDescription" rows="2" placeholder="Optional description for this webhook"></textarea>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="authType">Authentication</label>
+            <select id="authType">
+              <option value="none">None</option>
+              <option value="bearer">Bearer Token</option>
+              <option value="basic">Basic Auth</option>
+              <option value="apikey">API Key</option>
+            </select>
+          </div>
+
+          <!-- Auth fields will be populated dynamically -->
+          <div id="authFields" class="auth-fields"></div>
+
+          <div class="form-group full-width">
+            <label for="defaultPayload">Default Payload (JSON)</label>
+            <textarea id="defaultPayload" rows="6" placeholder='{
+  "message": "Hello World",
+  "timestamp": "2024-01-01T00:00:00Z"
+}'></textarea>
+          </div>
+
+          <div class="form-group full-width">
+            <label>
+              <input type="checkbox" id="enableFileUpload"> Enable File Upload
+            </label>
+            <small class="form-help">Allow files to be uploaded as part of the webhook payload</small>
+          </div>
+
+          <div id="fileUploadConfig" class="file-upload-config" style="display: none;">
+            <div class="form-group">
+              <label for="fileParameterName">File Parameter Name</label>
+              <input type="text" id="fileParameterName" value="file" placeholder="file">
+              <small>The parameter name for the uploaded file in the payload</small>
+            </div>
+            
+            <div class="form-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="includeFileMetadata" checked>
+                <span class="checkmark"></span>
+                Include File Metadata
+              </label>
+              <small>Include filename, size, and type in the payload</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" id="cancelBtn" class="secondary-btn">Cancel</button>
+          <button type="submit" class="primary-btn">Save Webhook</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Import/Export Modal -->
+  <div id="importExportModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="importExportTitle">Import/Export</h3>
+        <button id="closeImportExportModal" class="close-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="import-export-content">
+          <textarea id="importExportData" rows="15" placeholder="Paste your webhook configuration JSON here..."></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" id="cancelImportExportBtn" class="secondary-btn">Cancel</button>
+          <button type="button" id="executeImportExportBtn" class="primary-btn">Import</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success/Error Messages -->
+  <div id="messageContainer" class="message-container"></div>
+
+  <script src="scripts/crypto.js"></script>
+  <script src="scripts/options.js"></script>
+</body>
+</html>
